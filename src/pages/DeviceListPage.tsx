@@ -11,12 +11,18 @@ export function DeviceListPage() {
 
   return (
     <section>
-      <h1>Inventario de dispositivos</h1>
-      <p>Datos ficticios — Laboratorio 3, FDSI.</p>
+      <div className="page-heading">
+        <div>
+          <span className="eyebrow">Panel de operaciones</span>
+          <h1>Inventario de dispositivos</h1>
+          <p className="page-lead">Consulta el estado y los datos de los equipos registrados.</p>
+        </div>
+        <span className="read-only-pill">● Solo lectura</span>
+      </div>
 
-      <div style={{ marginBottom: 16 }}>
-        <label>
-          Filtrar por tipo:{' '}
+      <div className="toolbar">
+        <label className="field-inline">
+          <span>Filtrar por tipo</span>
           <select
             value={type ?? ''}
             onChange={(e) => setType((e.target.value || undefined) as DeviceType | undefined)}
@@ -31,9 +37,9 @@ export function DeviceListPage() {
         </label>
       </div>
 
-      {loading && <p>Cargando...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && !error && <DeviceTable devices={devices} />}
+      {loading && <p className="message loading-message">Cargando dispositivos...</p>}
+      {error && <p className="message error-message">{error}</p>}
+      {!loading && !error && <div className="table-panel"><DeviceTable devices={devices} /></div>}
     </section>
   )
 }
