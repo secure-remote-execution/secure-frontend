@@ -1,9 +1,12 @@
 # Secure Product Challenge — Frontend
 
 Interfaz web para consultar el inventario ficticio de dispositivos de red y simular
-la ejecución de scripts, para el **Laboratorio 3 (FDSI)**.
+la ejecución de scripts, para el **Laboratorio 3/4 (FDSI)**.
 
-> ⚠️ Sin login ni manejo de tokens — eso se agrega en el Laboratorio 4.
+> 🔒 Desde el Laboratorio 4, todas las páginas requieren login (JWT contra el backend).
+> El token se guarda en `localStorage` y se adjunta automáticamente en cada request.
+> Un `401` del backend cierra la sesión local. Credenciales de prueba: ver el README
+> del backend (`admin`/`Admin123!` y `viewer`/`Viewer123!`).
 
 ## Stack
 
@@ -12,9 +15,10 @@ React + Vite + TypeScript + react-router-dom.
 ## Estructura
 
 ```
-pages/        → vistas de alto nivel (DeviceListPage, DeviceDetailPage, ScriptSimulatorPage)
+pages/        → vistas de alto nivel (DeviceListPage, DeviceDetailPage, ScriptSimulatorPage, LoginPage)
 components/   → UI reutilizable (DeviceTable, StatusBadge, SimulationHistoryTable)
-services/     → llamadas HTTP al backend (api.ts, deviceService.ts, scriptService.ts)
+services/     → llamadas HTTP al backend (api.ts, deviceService.ts, scriptService.ts, authService.ts)
+auth/         → sesión JWT (AuthContext, ProtectedRoute, authStorage)
 types/        → interfaces TypeScript espejo de los DTOs del backend
 hooks/        → hooks reutilizables (useDevices)
 ```

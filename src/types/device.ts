@@ -26,4 +26,5 @@ export interface ScriptSimulationResponse {
   success: boolean
   output: string
   requestedAt: string
+  performedBy: string
 }

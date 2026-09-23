@@ -3,8 +3,11 @@ import { useSearchParams } from 'react-router-dom'
 import { scriptService } from '../services/scriptService'
 import type { ScriptSimulationResponse } from '../types/device'
 import { SimulationHistoryTable } from '../components/SimulationHistoryTable'
+import { useAuth } from '../auth/AuthContext'
 
 export function ScriptSimulatorPage() {
+  const { user } = useAuth()
+  const canSimulate = user?.role === 'ADMIN'
   const [searchParams] = useSearchParams()
   const [deviceId, setDeviceId] = useState(searchParams.get('deviceId') ?? '')
   const [scriptName, setScriptName] = useState('')
@@ -39,21 +42,28 @@ export function ScriptSimulatorPage() {
         queda registrada como evidencia para el Blue Team.
       </p>
 
-      <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 8, maxWidth: 400 }}>
-        <label>
-          Device ID
-          <input value={deviceId} onChange={(e) => setDeviceId(e.target.value)} required />
-        </label>
-        <label>
-          Script
-          <input value={scriptName} onChange={(e) => setScriptName(e.target.value)} required />
-        </label>
-        <label>
-          Parámetros (opcional)
-          <input value={parameters} onChange={(e) => setParameters(e.target.value)} />
-        </label>
-        <button type="submit">Simular</button>
-      </form>
+      {canSimulate ? (
+        <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 8, maxWidth: 400 }}>
+          <label>
+            Device ID
+            <input value={deviceId} onChange={(e) => setDeviceId(e.target.value)} required />
+          </label>
+          <label>
+            Script
+            <input value={scriptName} onChange={(e) => setScriptName(e.target.value)} required />
+          </label>
+          <label>
+            Parámetros (opcional)
+            <input value={parameters} onChange={(e) => setParameters(e.target.value)} />
+          </label>
+          <button type="submit">Simular</button>
+        </form>
+      ) : (
+        <p style={{ color: '#666' }}>
+          Tu rol ({user?.role}) solo permite consultar el historial. Se requiere rol ADMIN para
+          ejecutar simulaciones.
+        </p>
+      )}
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {result && (
