@@ -14,6 +14,7 @@ export function SimulationHistoryTable({ items }: { items: ScriptSimulationRespo
           <th style={cellStyle}>Script</th>
           <th style={cellStyle}>Parámetros</th>
           <th style={cellStyle}>Resultado</th>
+          <th style={cellStyle}>Ejecutado por</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,7 @@ export function SimulationHistoryTable({ items }: { items: ScriptSimulationRespo
             <td style={cellStyle}>{item.scriptName}</td>
             <td style={cellStyle}>{item.parameters ?? '—'}</td>
             <td style={cellStyle}>{item.output}</td>
+            <td style={cellStyle}>{item.performedBy}</td>
           </tr>
         ))}
       </tbody>
