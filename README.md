@@ -33,6 +33,16 @@ npm run dev
 Corre en `http://localhost:5173`. En desarrollo, Vite proxea `/api` hacia
 `http://localhost:8081` (backend Spring Boot) — ver `vite.config.ts`.
 
+## Seguridad
+
+Trabajo de seguridad del laboratorio (rama `security/lab-fdsi`): alcance,
+activos, riesgo principal, controles de GitHub habilitados, hallazgos de
+Semgrep/Gitleaks y revisión de dependencias (SCA) — ver
+[`docs/SECURITY.md`](docs/SECURITY.md) para el detalle completo y
+[`INFORME-SEGURIDAD.md`](INFORME-SEGURIDAD.md) para el resumen
+consolidado (backend + frontend). CI de SAST/secretos en
+[`.github/workflows/seguridad-estatica.yml`](.github/workflows/seguridad-estatica.yml).
+
 ## Build de producción
 
 ```bash
