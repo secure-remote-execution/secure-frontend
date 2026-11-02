@@ -5,8 +5,8 @@ la ejecución de scripts, para el **Laboratorio 3/4 (FDSI)**.
 
 > 🔒 Desde el Laboratorio 4, todas las páginas requieren login (JWT contra el backend).
 > El token se guarda en `localStorage` y se adjunta automáticamente en cada request.
-> Un `401` del backend cierra la sesión local. Credenciales de prueba: ver el README
-> del backend (`admin`/`Admin123!` y `viewer`/`Viewer123!`).
+> Un `401` del backend cierra la sesión local. Usuarios de prueba: `admin` y `viewer`; sus contraseñas
+> vienen de `LAB_ADMIN_PASSWORD` / `LAB_VIEWER_PASSWORD` (ver el README del backend).
 
 ## Stack
 
